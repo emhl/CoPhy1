@@ -51,8 +51,8 @@ int main() {
         // fy = fy1 + fy2 + fy3;
 
 
-        xn = 1./(2.+G/M*H) * (2.*H*H*fx + 2.*x*(2. - H*H*K/M)) + xl*(G/M*H-2.);
-        yn = 1./(2.+G/M*H) * (2.*H*H*fy + 2.*y*(2. - H*H*K/M)) + yl*(G/M*H-2.);
+        xn = 1./(2.+G/M*H) * (2.*H*H*fx + 2.*x*(2. - H*H*K/M) + xl*(G/M*H-2.));
+        yn = 1./(2.+G/M*H) * (2.*H*H*fy + 2.*y*(2. - H*H*K/M) + yl*(G/M*H-2.));
 
 
         xl = x;
