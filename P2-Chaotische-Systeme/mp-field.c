@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <math.h>
+#include <omp.h>
 
 #define T 300.0	// Laufzeit
 #define H 0.01	// Zeitschritt/m
-#define X0 -0.4 //Startwert x
-#define Y0 0.8 // Startwert y
 #define Z0 .25 // Startwert z
 #define K .5	// federkonstante k
 #define G .1 // Dämpfung gamma
@@ -19,18 +18,38 @@
 #define PX3 -0.5
 #define PY3 -0.5*sqrt(3.)
 
+#define XMIN -1.5 //Startwert x
+#define XMAX 1.5 //Endwert x
+#define YMIN -1.5 //Startwert y
+#define YMAX 1.5 //Endwert y
+#define RES .01 // Sweep Resolution
 
 
-int main() {
-    double t,xl=X0,yl=Y0, x,y, vx,vy,xn,yn,fx=0,fy=0, E;
+int pendel(double x0,double y0);
+
+int main(){
+    double x,y;
+    #pragma omp parallel
+    for (x = XMIN; x <= XMAX; x += RES){
+        for (y = YMIN; y <= YMAX; y += RES){
+            pendel(x,y);
+        }
+    }
+    //printf("%g %g %g\n",x,y,pos);
+}
+
+
+int pendel(double x0,double y0) {
+    double t,xl=x0,yl=y0, x,y, vx,vy,xn,yn,fx=0,fy=0, E;
     double dx1,dy1,dx2,dy2,dx3,dy3,fx1,fy1,fx2,fy2,fx3,fy3;
+    int pos;
     x = xl + H*V0;
     y = yl + H*V0;
     vx = V0 - K/M*H*x; 
     vy = V0 - K/M*H*x; // Euler metheode für ersten schritt
     // E = (v*v + K/M*x*x)/2.0;
 	for (t = H; t <= T; t += H){
-        printf("%g %g %g\n",t,x,y);
+        //printf("%g %g %g\n",t,x,y);
 
         dx1 = x - PX1;//first magnet
         dy1 = y - PY1;
@@ -61,4 +80,16 @@ int main() {
         y = yn;
 
 	}
+	if(x > 0){
+        pos = 1;
+    }
+    else {
+        if(y > 0){
+            pos = 2;
+        }
+        else {
+            pos = 3;
+        }
+    }
+    printf("%g %g %d\n",x0,y0,pos);
 }
