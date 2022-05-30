@@ -18,10 +18,10 @@
 #define PX3 -0.5
 #define PY3 -0.5*sqrt(3.)
 
-#define XMIN -1.5 //Startwert x
-#define XMAX 1.5 //Endwert x
-#define YMIN -1.5 //Startwert y
-#define YMAX 1.5 //Endwert y
+#define XMIN -3 //Startwert x
+#define XMAX 3 //Endwert x
+#define YMIN -3 //Startwert y
+#define YMAX 3 //Endwert y
 #define RES .01 // Sweep Resolution
 
 
