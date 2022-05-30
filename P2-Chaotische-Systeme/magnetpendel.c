@@ -3,8 +3,8 @@
 
 #define T 300.0	// Laufzeit
 #define H 0.01	// Zeitschritt/m
-#define X0 0.5 //Startwert x
-#define Y0 0.5 // Startwert y
+#define X0 1. //Startwert x
+#define Y0 0. // Startwert y
 #define Z0 .25 // Startwert z
 #define K .5	// federkonstante k
 #define G .1 // Dämpfung gamma
@@ -15,9 +15,9 @@
 #define PX1 1.
 #define PY1 0.
 #define PX2 -0.5
-#define PY2 0.866
+#define PY2 0.5/sin(3.)
 #define PX3 -0.5
-#define PY3 -0.866
+#define PY3 -0.5/sin(3.)
 
 
 
@@ -47,8 +47,8 @@ int main() {
         fx3 = dx3 / pow((fabs(dx3) + fabs(dy3) + Z0),3);
         fy3 = dy3 / pow((fabs(dx3) + fabs(dy3) + Z0),3);
 
-        // fx = fx1 + fx2 + fx3;
-        // fy = fy1 + fy2 + fy3;
+        fx = fx1 + fx2 + fx3;
+        fy = fy1 + fy2 + fy3;
 
 
         xn = 1./(2.+G/M*H) * (2.*H*H*fx + 2.*x*(2. - H*H*K/M) + xl*(G/M*H-2.));
