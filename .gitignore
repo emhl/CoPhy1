@@ -11,3 +11,6 @@
 
 # Ignore .dat files
 *.dat
+
+#unignore makefile
+!*/Makefile
