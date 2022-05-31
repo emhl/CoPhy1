@@ -69,7 +69,7 @@ int pendel(double x0,double y0) {
         fy3 = - dy3 / pow((pow(dx3,2) + pow(dy3,2) + pow(Z0,2)),1.5);
 
         dx4 = x - PX4;//fourth magnet
-        dy3 = y - PY4;
+        dy4 = y - PY4;
         fx4 = - dx4 / pow((pow(dx4,2) + pow(dy3,2) + pow(Z0,2)),1.5);
         fy4 = - dy4 / pow((pow(dx4,2) + pow(dy4,2) + pow(Z0,2)),1.5);
 
