@@ -1,4 +1,4 @@
-all: magnetpendel feld
+all: magnetpendel feld vier
 
 magnetpendel: magnetpendel.c
 	gcc magnetpendel.c -lm -o magnetpendel

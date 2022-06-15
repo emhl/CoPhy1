@@ -28,7 +28,6 @@ int main() {
     y = yl + H*V0;
     vx = V0 - K/M*H*x; 
     vy = V0 - K/M*H*x; // Euler metheode für ersten schritt
-    // E = (v*v + K/M*x*x)/2.0;
 	for (t = H; t <= T; t += H){
         printf("%g %g %g\n",t,x,y);
 

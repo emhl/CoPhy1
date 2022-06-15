@@ -35,7 +35,6 @@ int main(){
             pendel(x,y);
         }
     }
-    //printf("%g %g %g\n",x,y,pos);
 }
 
 
@@ -47,9 +46,7 @@ int pendel(double x0,double y0) {
     y = yl + H*V0;
     vx = V0 - K/M*H*x; 
     vy = V0 - K/M*H*x; // Euler metheode für ersten schritt
-    // E = (v*v + K/M*x*x)/2.0;
 	for (t = H; t <= T; t += H){
-        //printf("%g %g %g\n",t,x,y);
 
         dx1 = x - PX1;//first magnet
         dy1 = y - PY1;
