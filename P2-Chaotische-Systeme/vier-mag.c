@@ -20,11 +20,11 @@
 #define PX4 -0.5
 #define PY4 .5
 
-#define XMIN -1 //Startwert x
-#define XMAX 1 //Endwert x
-#define YMIN -1 //Startwert y
-#define YMAX 1 //Endwert y
-#define RES .01 // Sweep Resolution
+#define XMIN -1.5 //Startwert x
+#define XMAX 1.5 //Endwert x
+#define YMIN -1.5 //Startwert y
+#define YMAX 1.5 //Endwert y
+#define RES .005 // Sweep Resolution
 
 
 int pendel(double x0,double y0);
@@ -70,7 +70,7 @@ int pendel(double x0,double y0) {
 
         dx4 = x - PX4;//fourth magnet
         dy4 = y - PY4;
-        fx4 = - dx4 / pow((pow(dx4,2) + pow(dy3,2) + pow(Z0,2)),1.5);
+        fx4 = - dx4 / pow((pow(dx4,2) + pow(dy4,2) + pow(Z0,2)),1.5);
         fy4 = - dy4 / pow((pow(dx4,2) + pow(dy4,2) + pow(Z0,2)),1.5);
 
         fx = fx1 + fx2 + fx3 + fx4;
