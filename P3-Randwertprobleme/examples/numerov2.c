@@ -7,10 +7,11 @@
 #define H 0.001
 #define XMAX 20.0
 #define N (XMAX/H)
+#define EPS0  8.8541878128e-12
 
 double F(double x) {
-	// -x/(8*M_PI*EPS0)*exp(-x)	// Poisson
-	return -x/2.0*exp(-x);
+	return -x/(8*M_PI*EPS0)*exp(-x);	// Poisson
+	// return -x/2.0*exp(-x);
 }
 
 double k2(double x) {
@@ -31,12 +32,13 @@ int main() {
 	int i=1;
 	for(x=H;x <= XMAX;x += H) {
 		fnp1 = (H*H/12.0*(F(x+H)+10.0*F(x)+F(x-H)) + fn*(2.0-5.0/6.0*H*H*k2(x))-fnm1*(1.0+H*H/12.0*k2(x-H)))/(1.0+H*H/12.0*k2(x+H));
-
+		// printf("%g %g\n",x,fn);
 		v[i++]=fn;
 
 		fnm1=fn;
 		fn=fnp1;
 	}
+	printf("%g\n",(v[(int)N-1]-v[(int)N-2])/H);
 	// remove linear part of solution
 	i=0;
 	for(x=H;x < XMAX;x += H)
