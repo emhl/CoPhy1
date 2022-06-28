@@ -4,7 +4,7 @@
 #define H 0.001
 #define XMAX 20.0
 #define N (XMAX/H)
-#define EPS0 8.8541878128e-12
+#define EPS0 1
 
 
 double F(double x){
@@ -28,12 +28,12 @@ int main() {
     }
     steig = (fn-fnm1)/H;
 
-    // nochmal laufen lassen während man den linearen term abzieht
+      // nochmal laufen lassen während man den linearen term abzieht
     fnm1=0.0;
     fn=H;
     for(x=H;x <= XMAX;x += H) {
 		fnp1 = (H*H/12.0*(F(x+H)+10.0*F(x)+F(x-H)) + fn*(2.0-5.0/6.0*H*H*k2(x))-fnm1*(1.0+H*H/12.0*k2(x-H)))/(1.0+H*H/12.0*k2(x+H));
-        y = (fn - x*steig)/8.98755e9; //eichung 
+        y = (fn - x*steig)/.08; //eichung 
         printf("%g %g %g\n",x,y,fnp1);
         fnm1=fn;
 	    fn=fnp1;
