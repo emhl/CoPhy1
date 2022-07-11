@@ -1,10 +1,12 @@
-#include <math.h>
 #include <stdio.h>
+#define _USE_MATH_DEFINES
+#include <math.h>
+
 
 #define H 0.001
 #define XMAX 20.0
 #define N (XMAX / H)
-#define EPS0 1
+#define EPS0 1.
 
 double F(double x) { return -x / (8 * M_PI * EPS0) * exp(-x); }
 
