@@ -4,10 +4,10 @@
 #include <omp.h>
 
 
-#define T 2.
-#define DT 2.e-3
+#define T 2
+#define DT 5.e-4
 #define DX 1.e-3
-#define D 3.e-3
+#define D 1.e-3
 #define X0 .5
 #define T0 0.
 #define N 2*X0/DX
