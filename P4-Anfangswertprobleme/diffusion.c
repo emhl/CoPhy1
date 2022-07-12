@@ -4,8 +4,8 @@
 #include <omp.h>
 
 
-#define N 1000
-#define T 5.	
+#define N 500
+#define T 20	
 #define DT 5.e-3
 #define DX 5.e-3
 #define D 5.e-3
@@ -27,6 +27,7 @@ double phi_ftcs(double pm1, double p, double pp1){
 int main(){
 double x=X0,t=T0,phi;
 phin=(double *)malloc(2 * (int)N * sizeof(double));
+printf("x t phi \n");
 // t=0
 int j=0;
 while(j<2*N){
