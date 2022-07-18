@@ -3,10 +3,10 @@
 #include <math.h>
 
 #define N 1000		// x steps
-#define T 10.0		// run time
-#define DT 1.e-2
+#define T 2.0		// run time
+#define DT 5.e-4
 #define DX 1.e-3
-#define D 1.e-3		// diffusion constant
+#define D 1.e-3	// diffusion constant
 #define ALPHA (D*DT/DX/DX)
 
 // simplified Thomas algorithm for diffusion problem
@@ -53,13 +53,15 @@ int main() {
 	init(x);
 
 	int i;
-	double t;
+	double t=0;
 	for(t=0;t<T;t+=DT) {
 		// print out
-	        printf("p [][0:1] '-' w l t ''\n");
+	        // printf("p [][0:1] '-' w l t ''\n");
+			printf("x t phi \n");
+	
 		for(i=0;i<N;i++)
-			printf("%d %g\n",i,x[i]);
-		printf("e\n");
+			printf("%g %g %g\n",i*DX,t,x[i]);
+		// printf("e\n");
 
 		// initialize coefficients
 		for(i=0;i<N;i++) 
