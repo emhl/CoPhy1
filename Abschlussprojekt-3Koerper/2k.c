@@ -1,6 +1,7 @@
 #include <math.h>
 #include <stdio.h>
 
+#define TMAX 10
 #define H 1.e-2
 #define G 1.
 
@@ -43,4 +44,40 @@ double qm(double q1, double q2, double m1, double m2) {
 #define XM qm(X1, X2, M1, M2)
 #define YM qm(Y1, Y2, M1, M2)
 
-int main() {}
+int main() {
+
+double x1 = X1, x2 = X2, y1 = Y1, y2 = Y2, vx1 = VX1, vx2 = VX2, vy1 = VY1, vy2 = VY2;
+double x1n, x2n, y1n, y2n, vx1n, vx2n, vy1n, vy2n;
+//double x1v = X1, x2v = X2, y1v = Y1, y2v = Y2, vx1v = VX1, vx2v = VX2, vy1v = VY1, vy2v = VY2;
+
+
+
+for (double t = 0; t < TMAX; t += H)
+{
+  
+x1n = x1 + vx1*H - H*H*fg(x1,x2,M1,M2)/2/M1;
+x2n = x2 + vx2*H + H*H*fg(x1,x2,M1,M2)/2/M2;
+y1n = y1 + vy1*H - H*H*fg(y1,y2,M1,M2)/2/M1;
+y2n = y2 + vy2*H + H*H*fg(y1,y2,M1,M2)/2/M2;
+
+vx1n = vx1 - (fg(x1,x2,M1,M2)/M1+fg(x1n,x2n,M1,M2)M1)*H*H/2;
+vx2n = vx2 + (fg(x1,x2,M1,M2)/M2+fg(x1n,x2n,M1,M2)/M2)*H*H/2;
+vx1n = vy1 - (fg(y1,y2,M1,M2)/M1+fg(y1n,y2n,M1,M2)/M1)*H*H/2;
+vx1n = vy2 + (fg(y1,y2,M1,M2)/M2+fg(y1n,y2n,M1,M2)/M2)*H*H/2;
+
+printf("%g %g %g %g %g", x1, x2, y1, y2, t);
+
+x1 = x1n;
+x2 = x2n;
+y1 = y1n;
+y2 = y2n;
+vx1 = vx1n;
+vx2 = vx2n;
+vy1 = vy1n;
+vy2 = vy2n;
+
+}
+
+
+
+}
