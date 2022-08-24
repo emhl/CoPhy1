@@ -56,7 +56,7 @@ double fgy(double x1, double y1, double x2, double y2, double m1, double m2) {
   return fg(r * r, m1, m2) * (y1 - y2) / r;
 }
 
-// Position des Massenzentums des Systems
+// Position des Massenzentrums des Systems
 double qm(double q1, double q2, double q3, double m1, double m2, double m3) {
   return (q1 * m1 + q2 * m2 + q3 * m3) / (m1 + m2 + m3);
 }

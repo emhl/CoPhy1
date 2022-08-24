@@ -44,7 +44,7 @@ double ekin(double vx1, double vy1, double vx2, double vy2) {
 #define EPSILON1 sqrt(1. + 2. * E * P1 / (M1 * G * M))
 #define EPSILON2 sqrt(1. + 2. * E * P2 / (M2 * G * M))
 
-// transformationen zwischen polar und kartesischen koordinaten
+// Transformationen zwischen polar und kartesischen Koordinaten
 double r_transf(double x, double y) { return sqrt(x * x + y * y); }
 double phi_transf(double x, double y) { return atan2(y, x); }
 double x_transf(double r, double phi) { return r * cos(phi); }
@@ -55,7 +55,7 @@ double r(double phi, double p, double epsilon) {
   return p / (1 + epsilon * cos(phi));
 }
 
-// startwerte in karthesischen koordinaten
+// Startwerte in kartesischen Koordinaten
 #define R1 r_transf(X1, Y1)
 #define R2 r_transf(X2, Y2)
 #define PHI1 phi_transf(X1, Y1)
