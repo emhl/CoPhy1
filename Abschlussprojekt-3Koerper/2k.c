@@ -4,6 +4,7 @@
 #define TMAX 10
 #define H 1.e-3
 #define G 1.
+#define RMIN 1.e-2
 
 // Anfangsbedingungen für Körper 1
 #define X1 1.
@@ -20,12 +21,14 @@
 #define M2 4.
 
 // potentielle Energie des Systems
-double epot(double x1, double x2, double y1, double y2) {
+double epot(double x1, double x2, double y1, double y2)
+{
   return -G * M1 * M2 / sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
 }
 
 // kinetische Energie des Systems
-double ekin(double vx1, double vy1, double vx2, double vy2) {
+double ekin(double vx1, double vy1, double vx2, double vy2)
+{
   return (M1 * (vx1 * vx1 + vy1 * vy1) + M2 * (vx2 * vx2 + vy2 * vy2)) / 2;
 }
 
@@ -34,31 +37,36 @@ double ekin(double vx1, double vy1, double vx2, double vy2) {
 // Gravitationskraft zwischen zwei Körpern
 double fg(double r2, double m1, double m2) { return -G * m1 * m2 / r2; }
 
-double fgx(double x1, double y1, double x2, double y2, double m1, double m2) {
+double fgx(double x1, double y1, double x2, double y2, double m1, double m2)
+{
   double r = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
   return fg(r * r, m1, m2) * (x1 - x2) / r;
 }
 
-double fgy(double x1, double y1, double x2, double y2, double m1, double m2) {
+double fgy(double x1, double y1, double x2, double y2, double m1, double m2)
+{
   double r = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
   return fg(r * r, m1, m2) * (y1 - y2) / r;
 }
 
 // Position des Massenzentrums des Systems
-double qm(double q1, double q2, double m1, double m2) {
+double qm(double q1, double q2, double m1, double m2)
+{
   return (q1 * m1 + q2 * m2) / (m1 + m2);
 }
 
 #define XM qm(X1, X2, M1, M2)
 #define YM qm(Y1, Y2, M1, M2)
 
-int main() {
+int main()
+{
 
   double x1 = X1, x2 = X2, y1 = Y1, y2 = Y2, vx1 = VX1, vx2 = VX2, vy1 = VY1,
          vy2 = VY2;
   double x1n, x2n, y1n, y2n, vx1n, vx2n, vy1n, vy2n;
 
-  for (double t = 0; t < TMAX; t += H) {
+  for (double t = 0; t < TMAX; t += H)
+  {
 
     x1n = x1 + vx1 * H + H * H * fgx(x1, y1, x2, y2, M1, M2) / 2 / M1;
     x2n = x2 + vx2 * H + H * H * fgx(x2, y2, x1, y1, M2, M1) / 2 / M2;
@@ -81,6 +89,10 @@ int main() {
     printf("%g %g %g %g %g %g %g\n", x1, y1, x2, y2, t,
            sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2))),
         ekin(vx1, vy1, vx2, vy2) + epot(x1, x2, y1, y2);
+
+    // Check für Kollisionsbedingung
+    if (sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)) < RMIN)
+      break;
 
     x1 = x1n, x2 = x2n, y1 = y1n, y2 = y2n;
     vx1 = vx1n, vx2 = vx2n, vy1 = vy1n, vy2 = vy2n;

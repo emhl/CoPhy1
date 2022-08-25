@@ -20,8 +20,8 @@
 #define M M1 + M2
 #define M_RED M1 *M2 / M
 
-#define L2                                                                     \
-  2 * M1 *(X1 * VY1 - Y1 * VX1) * (X1 * VY1 - Y1 * VX1) +                      \
+#define L2                                                \
+  2 * M1 *(X1 * VY1 - Y1 * VX1) * (X1 * VY1 - Y1 * VX1) + \
       2 * M2 *(X2 * VY2 - Y2 * VX2) * (X2 * VY2 - Y2 * VX2)
 
 #define G 1.
@@ -30,12 +30,14 @@
 #define P2 L2 / M2 / M2 / G / M
 
 // potentielle Energie des Systems
-double epot(double x1, double x2, double y1, double y2) {
+double epot(double x1, double x2, double y1, double y2)
+{
   return -G * M * M_RED / sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
 }
 
 // kinetische Energie des Systems
-double ekin(double vx1, double vy1, double vx2, double vy2) {
+double ekin(double vx1, double vy1, double vx2, double vy2)
+{
   return (M_RED / 2) * (vx1 * vx1 + vy1 * vy1 + vx2 * vx2 + vy2 * vy2);
 }
 
@@ -51,7 +53,8 @@ double x_transf(double r, double phi) { return r * cos(phi); }
 double y_transf(double r, double phi) { return r * sin(phi); }
 
 // erstes Keplersches Gesetz
-double r(double phi, double p, double epsilon) {
+double r(double phi, double p, double epsilon)
+{
   return p / (1 + epsilon * cos(phi));
 }
 
@@ -61,14 +64,17 @@ double r(double phi, double p, double epsilon) {
 #define PHI1 phi_transf(X1, Y1)
 #define PHI2 phi_transf(X2, Y2)
 
-int main() {
-  if (!(0 < EPSILON1 < 1 || 0 < EPSILON2 < 1)) {
+int main()
+{
+  if (!(0 < EPSILON1 < 1 || 0 < EPSILON2 < 1))
+  {
     printf("Keine stabile Umlaufbahn möglich");
     printf("Eps1: %g  Eps2: %g", EPSILON1, EPSILON2);
     return 0;
   }
   // printf("%g %g\n", EPSILON1, E);
-  for (double k = 0; k < 2 * M_PI; k += DPHI) {
+  for (double k = 0; k < 2 * M_PI; k += DPHI)
+  {
     printf("%g %g %g %g \n", x_transf(r(k, P1, EPSILON1), k),
            y_transf(r(k, P1, EPSILON1), k), x_transf(r(k, P2, EPSILON2), k),
            y_transf(r(k, P2, EPSILON2), k));
