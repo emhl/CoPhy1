@@ -7,18 +7,18 @@
 #define RMIN 1.e-2
 
 // Anfangsbedingungen für Körper 1
-#define X1 1.
-#define Y1 2.
+#define X1 0.
+#define Y1 0.
 #define VX1 0.
-#define VY1 0.
-#define M1 5.
+#define VY1 -0.04
+#define M1 50.
 
 // Anfangsbedingungen für Körper 2
 #define X2 2.
-#define Y2 -1.
+#define Y2 0.
 #define VX2 0.
-#define VY2 .5
-#define M2 4.
+#define VY2 4
+#define M2 .5
 
 // potentielle Energie des Systems
 double epot(double x1, double x2, double y1, double y2)
@@ -64,7 +64,7 @@ int main()
   double x1 = X1, x2 = X2, y1 = Y1, y2 = Y2, vx1 = VX1, vx2 = VX2, vy1 = VY1,
          vy2 = VY2;
   double x1n, x2n, y1n, y2n, vx1n, vx2n, vy1n, vy2n;
-
+  printf("x1 y1 x2 y2 t r E\n");
   for (double t = 0; t < TMAX; t += H)
   {
 
