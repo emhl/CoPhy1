@@ -8,7 +8,7 @@
 
 // Anfangsbedingungen für Körper 1
 #define X1 -0.5
-#define Y1 0.
+#define Y1 2.
 #define VX1 0.
 #define VY1 0.
 #define M1 1.
@@ -17,13 +17,13 @@
 #define X2 0.7
 #define Y2 0.7
 #define VX2 0.
-#define VY2 0.
+#define VY2 1.
 #define M2 1.5
 
 // Anfangsbedingungen für Körper 3
 #define X3 0.8
 #define Y3 -0.8
-#define VX3 0.
+#define VX3 -2
 #define VY3 0.
 #define M3 2
 
