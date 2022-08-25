@@ -1,31 +1,31 @@
 #include <math.h>
 #include <stdio.h>
 
-#define TMAX 10
+#define TMAX 20
 #define H 1.e-2
 #define G 1.
-#define RMIN 1.e-10
+#define RMIN 2.e-2
 
 // Anfangsbedingungen für Körper 1
-#define X1 0.
+#define X1 -0.5
 #define Y1 0.
 #define VX1 0.
 #define VY1 0.
-#define M1 10
+#define M1 1.
 
 // Anfangsbedingungen für Körper 2
-#define X2 10
-#define Y2 0.
+#define X2 0.7
+#define Y2 0.7
 #define VX2 0.
-#define VY2 1
-#define M2 1
+#define VY2 0.
+#define M2 1.5
 
 // Anfangsbedingungen für Körper 3
-#define X3 0.
-#define Y3 10.
-#define VX3 1
-#define VY3 0
-#define M3 1
+#define X3 0.8
+#define Y3 -0.8
+#define VX3 0.
+#define VY3 0.
+#define M3 2
 
 // potentielle Energie des Systems
 double epot(double x1, double x2, double x3, double y1, double y2, double y3)
@@ -79,6 +79,7 @@ int main()
       double x1n, y1n, vx1n, vy1n;
       double x2n, y2n, vx2n, vy2n;
       double x3n, y3n, vx3n, vy3n;
+        printf("x1 y1 x2 y2 x3 y3 t E\n");
 
       for (double t = 0; t < TMAX; t += H)
       {
@@ -123,9 +124,8 @@ int main()
                        fgy(x3, y3, x2, y2, M3, M2) + fgy(x3n, y3n, x2n, y2n, M3, M2)) /
                           2 / M3 * H;
 
-            printf("%g %g %g %g %g %g %g %g %g\n", x1, y1, x2, y2, x3, y3, t,
-                   sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2))),
-                ekin(vx1, vy1, vx2, vy2, vx3, vy3) + epot(x1, x2, x3, y1, y2, y3);
+            printf("%g %g %g %g %g %g %g %g\n", x1, y1, x2, y2, x3, y3, t,
+                ekin(vx1, vy1, vx2, vy2, vx3, vy3) + epot(x1, x2, x3, y1, y2, y3));
 
             // Check für Kollisionsbedingungen
             if (sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)) < RMIN || sqrt((x1 - x3) * (x1 - x3) + (y1 - y3) * (y1 - y3)) < RMIN || sqrt((x2 - x3) * (x2 - x3) + (y2 - y3) * (y2 - y3)) < RMIN)
